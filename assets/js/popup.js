@@ -1,5 +1,4 @@
-/*
-let characters = [
+const characters = [
     'Aring',
     'AElig',
     'Oslash',
@@ -8,33 +7,30 @@ let characters = [
     'oslash'
 ];
 
-let target = document.getElementsByClassName('characters')[0];
-let template = '<button class=\'button character ~code~\'>&~code~;</button>';
+const DOM = {
+    message: document.getElementById('message'),
+    description: document.getElementById('description'),
+    overlay: document.getElementsByClassName('overlay')[0],
+    target: document.getElementsByClassName('characters')[0]
+}
+
+const template = '<button class=\'button character ~code~\'>&~code~;</button>';
 
 let createButton = (template) => {
     let element = document.createElement('button');
 
     element.innerHTML = template.trim();
-    element.addEventListener("click", clickHandler);
+    element.firstChild.addEventListener("click", clickHandler);
 
     return element.firstChild;
 }
 
-characters.forEach(el => {
-    target.insertAdjacentElement("afterbegin", createButton(template.replace(/~code~/g, el)));
-});
-*/
-
-let description = document.getElementById('description');
-let message = document.getElementById('message');
-let overlay = document.getElementsByClassName('overlay')[0];
-
 let notify = msg => {
-    message.innerHTML = msg;
-    overlay.style.display = "flex";
+    DOM.message.innerHTML = msg;
+    DOM.overlay.style.display = "flex";
 
     setTimeout(() => {
-        overlay.style.opacity = 1;
+        DOM.overlay.style.opacity = 1;
 
         setTimeout(() => {
             window.close();
@@ -57,6 +53,8 @@ let clickHandler = ({ target }) => {
         });
 }
 
-[...document.getElementsByClassName('character')].forEach(char => char.addEventListener('click', clickHandler));
+characters.forEach(el => {
+    DOM.target.insertAdjacentElement("afterbegin", createButton(template.replace(/~code~/g, el)));
+});
 
-description.innerHTML = chrome.i18n.getMessage("popup_description");
+DOM.description.innerHTML = chrome.i18n.getMessage("popup_description");
