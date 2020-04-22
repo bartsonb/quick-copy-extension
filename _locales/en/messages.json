@@ -1,0 +1,10 @@
+{
+    "popup_description": {
+        "message": "Click any of the characters to copy them to your clipboard!",
+        "description": "Description text in the extension popup."
+    },
+    "copied_successfully": {
+        "message": "copied!",
+        "description": "Text that is shown when a character was copied successfully."
+    }
+}

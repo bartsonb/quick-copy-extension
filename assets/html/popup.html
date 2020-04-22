@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>Norwegian Special Characters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: inline-block;
+        }
+
+        .characters {
+            z-index: 5;
+            display: flex;
+            background: #222;
+            padding: 10px;
+        }
+
+        button {
+            border: solid 1px #222;
+            border-radius: 3px;
+            background: #fff;
+            transition: all 0.15s ease-in-out;
+            padding: 3px 7px;
+            font-size: 18px;
+            outline: none;
+            width: 40px;
+            height: 40px;
+        }
+
+        button:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #3466d6;
+            color: #fff;
+        }
+
+        #description {
+            background: #3466d6;
+            color: #fff;
+            font-size: 14px;
+            padding: 7px 10px;
+        }
+
+        .overlay {
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: none;
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #message {
+            color: #fff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <p id="message">tolle Karte</p>
+    </div>
+
+    <div class="characters">
+        <button class="character Aring">&Aring;</button>
+        <button class="character AElig">&AElig;</button>
+        <button class="character Oslash">&Oslash;</button>
+        <button class="character aring">&aring;</button>
+        <button class="character aelig">&aelig;</button>
+        <button class="character oslash">&oslash;</button>
+    </div>
+
+    <p id="description"></p>
+
+    <script src="../js/popup.js"></script>
+</body>
+
+</html>

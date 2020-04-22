@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Norwegian Special Characters",
+    "version": "1.0.0",
+    "default_locale": "en",
+    "description": "Copy all norwegian special characters directly to your clipboard.",
+    "icons": {
+        "16": "assets/icons/ext-icon-16.png",
+        "32": "assets/icons/ext-icon-32.png",
+        "48": "assets/icons/ext-icon-48.png",
+        "128": "assets/icons/ext-icon-128.png"
+    },
+    "browser_action": {
+        "default_popup": "assets/html/popup.html"
+    }
+}  
