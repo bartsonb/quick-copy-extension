@@ -11,6 +11,6 @@
         "128": "assets/icons/ext-icon-128.png"
     },
     "browser_action": {
-        "default_popup": "assets/html/popup.html"
+        "default_popup": "dist/html/popup.html"
     }
 }  

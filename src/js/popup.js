@@ -1,3 +1,5 @@
+const { createButton } = require('./modules/create');
+
 const characters = [
     'Aring',
     'AElig',
@@ -14,15 +16,8 @@ const DOM = {
     target: document.getElementsByClassName('characters')[0]
 }
 
-const template = '<button class=\'button character ~code~\'>&~code~;</button>';
-
-let createButton = (template) => {
-    let element = document.createElement('button');
-
-    element.innerHTML = template.trim();
-    element.firstChild.addEventListener("click", clickHandler);
-
-    return element.firstChild;
+const templates = {
+    button: '<div class=\'wrapper\'><button class=\'button character ~code~\'>&~code~;</button></div>'
 }
 
 let notify = msg => {
@@ -54,7 +49,7 @@ let clickHandler = ({ target }) => {
 }
 
 characters.forEach(el => {
-    DOM.target.insertAdjacentElement("afterbegin", createButton(template.replace(/~code~/g, el)));
+    DOM.target.insertAdjacentElement("afterbegin", createButton(templates.button.replace(/~code~/g, el)));
 });
 
 DOM.description.innerHTML = chrome.i18n.getMessage("popup_description");
