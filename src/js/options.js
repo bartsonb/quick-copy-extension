@@ -1,4 +1,4 @@
-const characterList = require('../../assets/characters/characters');
+const characterList = require('./modules/characters');
 const { createFromTemplate } = require('./modules/create');
 require('./modules/localize').localize();
 
@@ -12,18 +12,20 @@ const DOM = {
 }
 
 chrome.storage.sync.get(['selectedLanguages'], ({ selectedLanguages }) => {
-    if (selectedLanguages) {
-        for (let countryCode in characterList) {     
-            DOM.form.insertAdjacentElement(
-                "afterBegin", 
-                createFromTemplate(
-                    templates.checkbox
-                        .replace(/~countryCode~/g, countryCode)
-                        .replace(/~language~/g, characterList[countryCode].language)
-                        .replace(/~checked~/g, selectedLanguages.includes(countryCode) ? 'checked' : '')
-                )
-            );
-        }
+    selectedLanguages = (Array.isArray(selectedLanguages))
+        ? selectedLanguages
+        : [];    
+
+    for (let countryCode in characterList) {     
+        DOM.form.insertAdjacentElement(
+            "afterBegin", 
+            createFromTemplate(
+                templates.checkbox
+                    .replace(/~countryCode~/g, countryCode)
+                    .replace(/~language~/g, characterList[countryCode].language)
+                    .replace(/~checked~/g, selectedLanguages.includes(countryCode) ? 'checked' : '')
+            )
+        );
     }
 });
 

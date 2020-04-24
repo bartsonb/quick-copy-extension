@@ -1,4 +1,4 @@
-const characterList = require('../../assets/characters/characters');
+const characterList = require('./modules/characters');
 const { createFromTemplate } = require('./modules/create');
 require('./modules/localize').localize();
 
@@ -56,7 +56,7 @@ DOM.optionsPageLink.addEventListener("click", () => {
 
 // Build Page
 chrome.storage.sync.get(['selectedLanguages'], ({ selectedLanguages }) => {
-    if (selectedLanguages.length > 0) {
+    if (Array.isArray(selectedLanguages) && selectedLanguages.length > 0) {
         selectedLanguages.forEach(countryCode => {
             let language = characterList[countryCode].language;
 
