@@ -17,7 +17,7 @@ const DOM = {
 }
 
 const templates = {
-    wrapper: '<div class=\'char-group\'><p class=\'chargroup__title\'></p></div>',
+    wrapper: '<div class=\'char-group\'><p class=\'chargroup__title\'>~language~</p></div>',
     character: '<button class=\'button char-group__character ~code~\'>&~code~;</button>'
 }
 

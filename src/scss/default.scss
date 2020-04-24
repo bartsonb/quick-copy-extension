@@ -9,7 +9,7 @@ body {
 }
 
 .group-wrapper {
-    
+
 }
 
 .char-group {
@@ -17,6 +17,11 @@ body {
     display: flex;
     background: #222;
     padding: 10px;
+
+    &__title {
+        font-size: 14px;
+        color: #efefef;
+    }
     
     &__character {
         border: solid 1px #222;
