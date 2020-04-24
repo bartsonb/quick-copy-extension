@@ -10,14 +10,15 @@ const characters = [
 ];
 
 const DOM = {
-    message: document.getElementById('message'),
-    description: document.getElementById('description'),
+    description: document.getElementById('description')[0],
+    message: document.getElementById('overlay__message')[0],
     overlay: document.getElementsByClassName('overlay')[0],
-    target: document.getElementsByClassName('characters')[0]
+    target: document.getElementsByClassName('char-group')[0]
 }
 
 const templates = {
-    button: '<div class=\'wrapper\'><button class=\'button character ~code~\'>&~code~;</button></div>'
+    wrapper: '<div class=\'char-group\'><p class=\'chargroup__title\'></p></div>',
+    character: '<button class=\'button char-group__character ~code~\'>&~code~;</button>'
 }
 
 let notify = msg => {
