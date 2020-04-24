@@ -1,30 +1,6 @@
+const characterList = require('../../assets/characters/characters');
 const { createFromTemplate } = require('./modules/create');
 require('./modules/localize').localize();
-
-const characters = {
-    "no": [
-        'Aring',
-        'AElig',
-        'Oslash',
-        'aring',
-        'aelig',
-        'oslash'
-    ],
-    "de": [
-        'szlig',
-        'auml',
-        'ouml',
-        'uuml',
-        'Auml',
-        'Ouml',
-        'Uuml'
-    ]
-}
-
-const countryCodes = {
-    "no": ['Norwegian', 'Norsk'],
-    "de": ['German', 'Deutsch']
-}
 
 const DOM = {
     overlay: document.querySelector('.overlay'),
@@ -39,7 +15,7 @@ const templates = {
     character: "<button class='char-group__content__button ~code~'>&~code~;</button>"
 }
 
-let notify = ( msg, close, duration = null ) => {
+let notify = ( msg, close, duration = 1000 ) => {
     DOM.message.innerHTML = msg;
     DOM.overlay.style.display = "flex";
 
@@ -50,15 +26,15 @@ let notify = ( msg, close, duration = null ) => {
             if (close) window.close();
 
             DOM.overlay.style.opacity = 0;
+            setTimeout(() => {
+                DOM.overlay.style.display = "none";
+            }, 30)
         }, duration);
     }, 30);
 }
 
 let clickHandler = ({ target }) => {
     let character = target.innerHTML;
-
-    target.style.background = "#3466d6";
-    target.style.color = "#fff";
 
     navigator.clipboard.writeText(character)
         .then(() => {
@@ -79,19 +55,17 @@ DOM.optionsPageLink.addEventListener("click", () => {
 });
 
 // Build Page
-chrome.storage.sync.set({ selectedLanguages: ["de", "no"] });
-
 chrome.storage.sync.get(['selectedLanguages'], ({ selectedLanguages }) => {
-    if (selectedLanguages) {
-        selectedLanguages.forEach(lang => {
-            let [ language ] = countryCodes[lang];
+    if (selectedLanguages.length > 0) {
+        selectedLanguages.forEach(countryCode => {
+            let language = characterList[countryCode].language;
 
             DOM.target.insertAdjacentElement(
                 "beforeEnd", 
                 createFromTemplate(templates.characterGroup.replace(/~language~/g, language))
             );
 
-            characters[lang].map(char => {
+            Object.values(characterList[countryCode].characters).map(char => {
                 document.querySelector(`.char-group.${language} > .char-group__content`).insertAdjacentElement(
                     "afterBegin", 
                     createFromTemplate(templates.character.replace(/~code~/g, char), clickHandler)

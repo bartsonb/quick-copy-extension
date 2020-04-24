@@ -20,9 +20,7 @@ body {
     background: #222;
     color: #fff;
 
-    &__title {
-
-    }
+    &__title {}
 
     &__options-page-link {
         color: #3466d6;
@@ -63,12 +61,12 @@ body {
             outline: none;
             width: 40px;
             height: 40px;
-        
+
             &:hover {
                 background: #3466d6;
                 color: #fff;
             }
-        
+
             &:not(:last-child) {
                 margin-right: 10px;
             }
@@ -95,7 +93,10 @@ body {
     background: rgba(0, 0, 0, 0.6);
     padding: 10px;
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: none;
     opacity: 0;
     transition: all 0.2s ease-in-out;
@@ -104,5 +105,49 @@ body {
         color: #fff;
         text-align: center;
         font-size: 18px;
+    }
+}
+
+.options {
+    padding: 20px;
+
+    &__title {
+        margin-bottom: 10px;
+    }
+
+    &__form {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+
+        &__input {
+            font-size: 16px;
+
+            > input {
+                padding: 3px 7px;
+                margin-right: 5px;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+
+        input[type="submit"] {
+            padding: 5px 8px;
+        }
+        
+        &__message {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 15px;
+            font-size: 16px;
+            color: #16be00;
+            transition: all 0.4s ease-in-out;
+            text-align: center;
+            opacity: 0;
+            display: none;
+        }
     }
 }

@@ -16,10 +16,13 @@
         "description": "Description text in the extension popup."
     },
     "copiedSuccessfully": {
-        "message": "kopiert!",
+        "message": "kopiert",
         "description": "Text that is shown when a character was copied successfully."
     },
     "optionsPageName": {
         "message": "Optionen"
+    },
+    "optionsPageSaved": {
+        "message": "Optionen gespeichert"
     }
 }

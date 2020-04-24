@@ -21,5 +21,8 @@
     },
     "optionsPageName": {
         "message": "Options"
+    },
+    "optionsPageSaved": {
+        "message": "Options saved"
     }
 }
