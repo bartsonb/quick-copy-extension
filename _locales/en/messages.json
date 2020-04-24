@@ -7,6 +7,10 @@
         "message": "QuickCopy for Special Characters",
         "description": "Extension name."
     },
+    "extensionNameShort": {
+        "message": "QuickCopy",
+        "description": "Short extension name."
+    },
     "popupDescription": {
         "message": "Click any of the characters to copy them to your clipboard!",
         "description": "Description text in the extension popup."
@@ -14,5 +18,8 @@
     "copiedSuccessfully": {
         "message": "copied!",
         "description": "Text that is shown when a character was copied successfully."
+    },
+    "optionsPageName": {
+        "message": "Options"
     }
 }

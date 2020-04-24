@@ -7,6 +7,10 @@
         "message": "QuickCopy für Sonderzeichen",
         "description": "Extension name."
     },
+    "extensionNameShort": {
+        "message": "QuickCopy",
+        "description": "Short extension name."
+    },
     "popupDescription": {
         "message": "Klicke einen der Buchstaben um ihn in deine Zwischenablage zu kopieren!",
         "description": "Description text in the extension popup."
@@ -14,5 +18,8 @@
     "copiedSuccessfully": {
         "message": "kopiert!",
         "description": "Text that is shown when a character was copied successfully."
+    },
+    "optionsPageName": {
+        "message": "Optionen"
     }
 }

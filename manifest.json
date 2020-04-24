@@ -13,6 +13,10 @@
     "browser_action": {
         "default_popup": "dist/html/popup.html"
     },
+    "options_ui": {
+        "page": "dist/html/options.html",
+        "open_in_tab": false
+    },
     "permissions": [
         "storage"
     ]

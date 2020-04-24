@@ -1,18 +1,27 @@
 const { createFromTemplate } = require('./modules/create');
+require('./modules/localize').localize();
 
-const characters = [
-    'Aring',
-    'AElig',
-    'Oslash',
-    'aring',
-    'aelig',
-    'oslash'
-];
+const characters = {
+    "no": [
+        'Aring',
+        'AElig',
+        'Oslash',
+        'aring',
+        'aelig',
+        'oslash'
+    ]
+}
+
+const countryCodes = {
+    "no": "Norwegian"
+}
 
 const DOM = {
-    overlay: document.getElementsByClassName('overlay')[0],
-    message: document.getElementsByClassName('overlay__message')[0],
-    target: document.getElementsByClassName('char-group-wrapper')[0]
+    overlay: document.querySelector('.overlay'),
+    message: document.querySelector('.overlay__message'),
+    description: document.querySelector('.description'),
+    target: document.querySelector('.char-group-wrapper'),
+    optionsPageLink: document.querySelector('.header__options-page-link')
 }
 
 const templates = {
@@ -20,21 +29,15 @@ const templates = {
     character: '<button class=\'char-group__character ~code~\'>&~code~;</button>'
 }
 
-const regex = {
-    localizationString: /(?<=__MSG_).*(?=__)/
-}
-
-let notify = msg => {
+let notify = ( msg, duration = null ) => {
     DOM.message.innerHTML = msg;
     DOM.overlay.style.display = "flex";
 
     setTimeout(() => {
         DOM.overlay.style.opacity = 1;
 
-        setTimeout(() => {
-            window.close();
-        }, 1000);
-    }, 100);
+        if (duration) setTimeout(() => { window.close() }, duration);
+    }, 30);
 }
 
 let clickHandler = ({ target }) => {
@@ -45,29 +48,40 @@ let clickHandler = ({ target }) => {
 
     navigator.clipboard.writeText(character)
         .then(() => {
-            notify(character + " " + chrome.i18n.getMessage("copiedSuccessfully"));
+            notify(character + " " + chrome.i18n.getMessage("copiedSuccessfully"), 1000);
         })
         .catch(err => {
             console.log(err)
         });
 }
 
-characters.forEach(el => {
-    DOM.target.insertAdjacentElement(
-        "afterbegin", 
-        createFromTemplate(templates.character.replace(/~code~/g, el))
-    );
+// Event Listener
+DOM.optionsPageLink.addEventListener("click", () => {
+    if (chrome.runtime.openOptionsPage) {
+        chrome.runtime.openOptionsPage();
+    } else {
+        window.open(chrome.runtime.getURL('/dist/html/options.html'));
+    }
 });
 
-chrome.storage.sync.set({ languages: ['no'] });
+// Build Page
+chrome.storage.sync.set({ selectedLanguages: null });
 
-
-// Localization
-[...document.querySelectorAll('title, p, h1, h2, h3, h4')]
-    .forEach(el => {
-        let match = el.innerText.match(regex.localizationString);
-
-        if (match) {
-            el.innerText = chrome.i18n.getMessage(match[0]); 
-        }
-    });
+chrome.storage.sync.get(['selectedLanguages'], ({ selectedLanguages }) => {
+    if (selectedLanguages) {
+        selectedLanguages.forEach(lang => {
+            let wrapper = createFromTemplate(templates.wrapper);
+    
+            characters[lang].forEach(char => {
+                wrapper.insertAdjacentElement(
+                    "afterbegin", 
+                    createFromTemplate(templates.character.replace(/~code~/g, char))
+                );
+            });
+    
+            DOM.target.insertAdjacentElement("afterend", wrapper);
+        });
+    } else {
+        DOM.description.innerText = "Please select a language in the configuration page.";
+    }
+});
