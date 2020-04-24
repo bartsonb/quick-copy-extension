@@ -4,7 +4,7 @@ A chrome extension that lets you quickly copy any of the language specific chara
 
 This extension was made for people who don't want to add an additional language to their keyboards and still want a quick and easy way to access those special characters without using an external source.
 
-![](assets/preview/preview.gif)
+![](dist/preview/popup-preview.gif)
 
 ## All Available Languages
 
@@ -17,3 +17,5 @@ This extension was made for people who don't want to add an additional language 
 ## Language Selection
 
 Use the options page to customize your language selection.
+
+![](dist/preview/options-preview.gif)
