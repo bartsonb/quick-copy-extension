@@ -2,8 +2,5 @@
 node_modules/
 .idea/
 .vscode/
-
-dist/*
-!dist/html
-
-# Files
+dist/js/*
+dist/css/*

@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "default_locale": "en",
     "icons": {
-        "16": "assets/icons/ext-icon-16.png",
-        "32": "assets/icons/ext-icon-32.png",
-        "48": "assets/icons/ext-icon-48.png",
-        "128": "assets/icons/ext-icon-128.png"
+        "16": "dist/icons/ext-icon-16.png",
+        "32": "dist/icons/ext-icon-32.png",
+        "48": "dist/icons/ext-icon-48.png",
+        "128": "dist/icons/ext-icon-128.png"
     },
     "browser_action": {
         "default_popup": "dist/html/popup.html"
