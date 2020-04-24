@@ -1,10 +1,10 @@
-const createButton = (template, eventHandler) => {
+const createFromTemplate = (template, eventHandler = null) => {
     let element = document.createElement('div');
 
     element.innerHTML = template.trim();
-    element.firstChild.addEventListener("click", eventHandler);
+    if (eventHandler) element.firstChild.addEventListener("click", eventHandler);
 
     return element.firstChild;
 }
 
-module.exports = { createButton };
+module.exports = { createFromTemplate };

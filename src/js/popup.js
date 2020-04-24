@@ -1,4 +1,4 @@
-const { createButton } = require('./modules/create');
+const { createFromTemplate } = require('./modules/create');
 
 const characters = [
     'Aring',
@@ -10,14 +10,18 @@ const characters = [
 ];
 
 const DOM = {
-    message: document.getElementById('overlay__message')[0],
     overlay: document.getElementsByClassName('overlay')[0],
+    message: document.getElementsByClassName('overlay__message')[0],
     target: document.getElementsByClassName('char-group-wrapper')[0]
 }
 
 const templates = {
     wrapper: '<div class=\'char-group\'><p class=\'char-group__title\'>~language~</p></div>',
-    character: '<button class=\'button char-group__character ~code~\'>&~code~;</button>'
+    character: '<button class=\'char-group__character ~code~\'>&~code~;</button>'
+}
+
+const regex = {
+    localizationString: /(?<=__MSG_).*(?=__)/
 }
 
 let notify = msg => {
@@ -41,7 +45,7 @@ let clickHandler = ({ target }) => {
 
     navigator.clipboard.writeText(character)
         .then(() => {
-            notify(character + " " + chrome.i18n.getMessage("__MSG_copiedSuccessfully__"));
+            notify(character + " " + chrome.i18n.getMessage("copiedSuccessfully"));
         })
         .catch(err => {
             console.log(err)
@@ -49,7 +53,10 @@ let clickHandler = ({ target }) => {
 }
 
 characters.forEach(el => {
-    DOM.target.insertAdjacentElement("afterbegin", createButton(templates.button.replace(/~code~/g, el)));
+    DOM.target.insertAdjacentElement(
+        "afterbegin", 
+        createFromTemplate(templates.character.replace(/~code~/g, el))
+    );
 });
 
 chrome.storage.sync.set({ languages: ['no'] });
@@ -57,5 +64,10 @@ chrome.storage.sync.set({ languages: ['no'] });
 
 // Localization
 [...document.querySelectorAll('title, p, h1, h2, h3, h4')]
-    .filter(el => /__MSG_.__/.test(el.innerText))
-    .forEach(el => { console.log(el) });
+    .forEach(el => {
+        let match = el.innerText.match(regex.localizationString);
+
+        if (match) {
+            el.innerText = chrome.i18n.getMessage(match[0]); 
+        }
+    });

@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
+    "description": "__MSG_extensionDescription__",
     "version": "1.0.0",
     "default_locale": "en",
-    "description": "__MSG_extensionDescription__",
     "icons": {
         "16": "assets/icons/ext-icon-16.png",
         "32": "assets/icons/ext-icon-32.png",
@@ -13,7 +13,7 @@
     "browser_action": {
         "default_popup": "dist/html/popup.html"
     },
-    "permissions": {
+    "permissions": [
         "storage"
-    }
+    ]
 }  

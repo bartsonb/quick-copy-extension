@@ -1,17 +1,17 @@
 {
-    "__MSG_extensionDescription__": {
+    "extensionDescription": {
         "message": "Customize your language selection and copy any language specific character with one click directly to your clipboard.",
         "description": "Extension description."
     },
-    "__MSG_extensionName": {
+    "extensionName": {
         "message": "QuickCopy for Special Characters",
         "description": "Extension name."
     },
-    "__MSG_popupDescription__": {
+    "popupDescription": {
         "message": "Click any of the characters to copy them to your clipboard!",
         "description": "Description text in the extension popup."
     },
-    "__MSG_copiedSuccessfully__": {
+    "copiedSuccessfully": {
         "message": "copied!",
         "description": "Text that is shown when a character was copied successfully."
     }
