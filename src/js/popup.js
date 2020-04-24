@@ -28,7 +28,7 @@ let notify = ( msg, close, duration = 1000 ) => {
             DOM.overlay.style.opacity = 0;
             setTimeout(() => {
                 DOM.overlay.style.display = "none";
-            }, 30)
+            }, 230)
         }, duration);
     }, 30);
 }

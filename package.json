@@ -6,10 +6,10 @@
   "scripts": {
     "mkdir": "cd dist && mkdir js && mkdir css",
     "build": "browserify ./src/js/popup.js > ./dist/js/popup.js && browserify ./src/js/options.js > ./dist/js/options.js && node-sass ./src/scss/default.scss ./dist/css/default.css",
-    "watch-popup-js": "watchify ./src/js/popup.js -o ./dist/js/popup.js",    
+    "watch-popup-js": "watchify ./src/js/popup.js -o ./dist/js/popup.js",
     "watch-options-js": "watchify ./src/js/options.js -o ./dist/js/options.js",
     "watch-scss": "node-sass -w ./src/scss/default.scss ./dist/css/default.css",
-    "dev": "concurrently \"npm:watch-*\""
+    "dev": "concurrently 'npm:watch-*'"
   },
   "repository": {
     "type": "git",
