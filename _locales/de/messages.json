@@ -1,9 +1,17 @@
 {
-    "popup_description": {
+    "__MSG_extensionDescription__": {
+        "message": "Passen Sie ihre Sprachauswahl and und kopieren Sie Sonderzeichen aus den jeweiligen Sprachen mit einem Klick direkt in ihre Zwischenablage.",
+        "description": "Extension description."
+    },
+    "__MSG_extensionName": {
+        "message": "QuickCopy für Sonderzeichen",
+        "description": "Extension name."
+    },
+    "__MSG_popupDescription__": {
         "message": "Klicke einen der Buchstaben um ihn in deine Zwischenablage zu kopieren!",
         "description": "Description text in the extension popup."
     },
-    "copied_successfully": {
+    "__MSG_copiedSuccessfully__": {
         "message": "kopiert!",
         "description": "Text that is shown when a character was copied successfully."
     }

@@ -4,20 +4,19 @@ const characters = [
     'Aring',
     'AElig',
     'Oslash',
-    'aring', 
+    'aring',
     'aelig',
     'oslash'
 ];
 
 const DOM = {
-    description: document.getElementById('description')[0],
     message: document.getElementById('overlay__message')[0],
     overlay: document.getElementsByClassName('overlay')[0],
-    target: document.getElementsByClassName('char-group')[0]
+    target: document.getElementsByClassName('char-group-wrapper')[0]
 }
 
 const templates = {
-    wrapper: '<div class=\'char-group\'><p class=\'chargroup__title\'>~language~</p></div>',
+    wrapper: '<div class=\'char-group\'><p class=\'char-group__title\'>~language~</p></div>',
     character: '<button class=\'button char-group__character ~code~\'>&~code~;</button>'
 }
 
@@ -42,7 +41,7 @@ let clickHandler = ({ target }) => {
 
     navigator.clipboard.writeText(character)
         .then(() => {
-            notify(character + " " + chrome.i18n.getMessage("copied_successfully"));
+            notify(character + " " + chrome.i18n.getMessage("__MSG_copiedSuccessfully__"));
         })
         .catch(err => {
             console.log(err)
@@ -53,4 +52,10 @@ characters.forEach(el => {
     DOM.target.insertAdjacentElement("afterbegin", createButton(templates.button.replace(/~code~/g, el)));
 });
 
-DOM.description.innerHTML = chrome.i18n.getMessage("popup_description");
+chrome.storage.sync.set({ languages: ['no'] });
+
+
+// Localization
+[...document.querySelectorAll('title, p, h1, h2, h3, h4')]
+    .filter(el => /__MSG_.__/.test(el.innerText))
+    .forEach(el => { console.log(el) });
