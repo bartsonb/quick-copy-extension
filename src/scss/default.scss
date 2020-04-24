@@ -110,14 +110,35 @@ body {
 
 .options {
     padding: 20px;
+    position: relative;
 
     &__title {
         margin-bottom: 10px;
     }
 
+    &__subtitle {
+        margin-bottom: 5px;
+    }
+
+    &__message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        padding: 10px;
+        border-radius: 3px;
+        font-size: 16px;
+        color: #fff;
+        background: #3466d5;
+        transition: all 0.4s ease-in-out;
+        text-align: center;
+        opacity: 0;
+        display: none;
+        box-shadow: 0px 4px 19px -11px rgba(0,0,0,0.75);
+    }
+
     &__form {
         display: flex;
-        position: relative;
         flex-direction: column;
 
         &__input {
@@ -135,19 +156,16 @@ body {
 
         input[type="submit"] {
             padding: 5px 8px;
-        }
-        
-        &__message {
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom: 15px;
-            font-size: 16px;
-            color: #16be00;
-            transition: all 0.4s ease-in-out;
-            text-align: center;
-            opacity: 0;
-            display: none;
+            border-radius: 3px;
+            background: #333;
+            border: solid 1px #333;
+            color: #fff;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: darken(#333, 7%);
+                border: solid 1px darken(#333, 7%);
+            }
         }
     }
 }

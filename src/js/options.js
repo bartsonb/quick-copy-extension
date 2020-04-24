@@ -8,7 +8,7 @@ const templates = {
 
 const DOM = {
     form: document.querySelector('.options__form'),
-    formMessage: document.querySelector('.options__form__message')
+    formMessage: document.querySelector('.options__message')
 }
 
 chrome.storage.sync.get(['selectedLanguages'], ({ selectedLanguages }) => {
@@ -40,10 +40,10 @@ DOM.form.addEventListener("submit", (event) => {
     chrome.storage.sync.set({ selectedLanguages: checkedLanguages });
 
     DOM.formMessage.innerHTML = chrome.i18n.getMessage("optionsPageSaved");
-    DOM.formMessage.style.display = "inline";
+    DOM.formMessage.style.display = "block";
     
     setTimeout(() =>  {
-        DOM.formMessage.style.transform = "translateY(-25px)";
+        DOM.formMessage.style.transform = "translate(-50%, -55%)";
         DOM.formMessage.style.opacity = 1;
 
         setTimeout(() => { window.close() }, 2000);
